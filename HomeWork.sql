@@ -17,7 +17,7 @@ create table if not exists Album(
 create table if not exists Song(
 	id SERIAL primary key,
 	name VARCHAR(60) not null,
-	duration INTEGER not NULL,
+	duration TIME not NULL,
 	album_id INTEGER references Album(id)  
 );
 	
@@ -41,5 +41,5 @@ create table if not exists GanresMusicains(
 create table if not exists MusiciansAlbums(
 	id SERIAL primary key,
 	musician_id INTEGER references Musician(id),
-	albums_id INTEGER references Albums(id)
+	albums_id INTEGER references Album(id)
 );
