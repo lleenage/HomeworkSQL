@@ -50,6 +50,9 @@ values('Лучи', '00:03:03', '3')
 insert into Song(name, duration, album_id)
 values('Любовь', '00:03:09', '2')
 
+insert into Song(name, duration)
+values('Сосиска', '00:01:56')
+
 insert into Song(name, duration, album_id)
 values('Мечта', '00:04:01', '2')
 
@@ -114,7 +117,10 @@ insert into Collection(name, year_of_issue)
 values('Мой кот', '2018-09-07')
 
 insert into Song(name, duration, album_id)
-values('Это мой котенок', '00:01:03', '2')
+values('Хомяк', '00:12:03', '4')
+
+insert into Song(name, duration, album_id)
+values('Собакен', '00:22:03', '4')
 
 --Задача 2
 --1.Название и продолжительность самого длительного трека.
@@ -122,7 +128,6 @@ select name, duration
 from Song   
 order by duration desc 
 limit 1
-
 
 --2.Название треков, продолжительность которых не менее 3,5 минут.
 select name, duration 
@@ -151,12 +156,9 @@ from  ganresmusicains g
 group by ganre_id 
 
 --2.Количество треков, вошедших в альбомы 2019–2020 годов.
-select count(*)
-from  song s 
-where id = '4'
-
-select id from album a
-where year_of_issue between '2019-01-01' and '2020-01-01'
+select count(*) from  song s 
+join  album a on s.album_id = a.id 
+where a.year_of_issue between '2019-01-01' and '2020-01-01'
 
 --3.Средняя продолжительность треков по каждому альбому.
 select album_id, avg(duration) from  song 
@@ -166,7 +168,6 @@ group by album_id
 select m.name from musician m
 join album a on m.id = a.id
 WHERE year_of_issue not between '2020-01-01' and '2020-12-31'
-
 
 --5.Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами).
 select a.name from musician m
